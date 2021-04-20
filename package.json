@@ -1,0 +1,38 @@
+{
+    "name": "wif-bet-handler",
+    "version": "1.0.0",
+    "author": "Pavel Rubin <pash7ka@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "ganache": "ganache-cli",
+        "generate-artifacts": "npx truffle compile --all && npx truffle-abi -o ./build/abi && npx typechain --target=truffle-v5 \"build/contracts/*.json\"",
+        "check-contract-size": "npx truffle run contract-size --checkMaxSize 24",
+        "clean-build": "npx rimraf {build/abi,build/contracts,types/truffle-contracts}",
+        "test": "npm run clean-build && npm run generate-artifacts && npx truffle test",
+        "deploy-bsctest": "npx truffle migrate --network bsctest",
+        "verify-bsctest": "npx truffle run verify BetHandler --network bsctest"
+    },
+    "dependencies": {
+        "@openzeppelin/contracts": "3.4.1-solc-0.7-2",
+        "dotenv": "^8.2.0"
+    },
+    "devDependencies": {
+        "@openzeppelin/test-helpers": "^0.5.10",
+        "@truffle/hdwallet-provider": "^1.2.1",
+        "@typechain/truffle-v5": "^4.0.1",
+        "@types/bn.js": "^5.1.0",
+        "@types/chai": "^4.2.15",
+        "@types/mocha": "^8.2.1",
+        "@types/web3": "^1.2.2",
+        "chai-bn": "^0.2.1",
+        "eth-gas-reporter": "^0.2.21",
+        "solidity-coverage": "^0.7.15",
+        "truffle": "^5.1.58",
+        "truffle-abi": "^1.0.3",
+        "truffle-contract-size": "^2.0.0",
+        "truffle-plugin-verify": "^0.5.4",
+        "ts-node": "^9.1.1",
+        "typechain": "^4.0.1",
+        "typescript": "^4.1.4"
+    }
+}
